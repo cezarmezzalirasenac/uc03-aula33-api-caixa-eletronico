@@ -1,5 +1,5 @@
-const express = require('express')
-const { randomUUID } = require('crypto')
+import express from 'express'
+import { randomUUID } from 'node:crypto'
 
 const app = express()
 const port = 5000
@@ -106,7 +106,7 @@ app.post('/conta/:numero_conta/deposito', (request, response) => {
     response.send({
       "error": "Tipo inválido"
     })
-  } else if (tipo.toUpperCase() === 'DINHEIRO'){
+  } else if (tipo.toUpperCase() === 'DINHEIRO') {
     // TODO - Validar se é inteiro
   }
 })
