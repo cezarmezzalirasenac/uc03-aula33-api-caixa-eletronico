@@ -32,7 +32,7 @@ Exemplo do corpo da requisição quando for um deposito em dinheiro:
 ```json
 {
   "valor": 100,
-  "tipo": "DINHEIRO"
+  "tipo_deposito": "DINHEIRO"
 }
 ```
 
@@ -41,7 +41,7 @@ Exemplo do corpo da requisição quando for um deposito em cheque:
 ```json
 {
   "valor": 100.02,
-  "tipo": "CHEQUE"
+  "tipo_deposito": "CHEQUE"
 }
 ```
 

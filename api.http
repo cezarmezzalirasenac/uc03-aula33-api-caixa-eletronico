@@ -16,5 +16,5 @@ Content-Type: application/json
 
 {
   "valor": 100,
-  "tipo": "DINHEIRO"
+  "tipo_deposito": "DINHEIRO"
 }

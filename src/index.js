@@ -1,34 +1,34 @@
 import express from 'express'
-import { randomUUID } from 'node:crypto'
+
+import Conta from './entidades/conta.js'
+import Transacao from './entidades/transacao.js'
 
 const app = express()
 const port = 5000
 
 app.use(express.json())
 
-let contas = [
-  {
-    "id": randomUUID(),
-    "nome": "Davi",
-    "numero_conta": "12345-6",
-    "agencia": "1234",
-    "saldo": 0,
-  },
-  {
-    "id": randomUUID(),
-    "nome": "Murilo",
-    "numero_conta": "5432-1",
-    "agencia": "1234",
-    "saldo": 0,
-  },
-  {
-    "id": randomUUID(),
-    "nome": "Eberton",
-    "numero_conta": "1313-0",
-    "agencia": "1234",
-    "saldo": 0,
-  },
-]
+let contas = []
+contas.push(new Conta("1234", "12345-6", "Davi", "corrente"))
+contas.push(new Conta("1234", "5432-1", "Murilo", "corrente"))
+contas.push(new Conta("1234", "1313-0", "Eberton", "corrente"))
+
+function buscaContaPorNumero(numero_conta) {
+  return contas.find(
+    (conta) => conta.numero_conta === numero_conta
+  )
+}
+
+function insereTransacao(numero_conta, tipo_transacao, valor, descricao) {
+  for (const conta of contas) {
+    if (conta.numero_conta === numero_conta) {
+      const transacao = new Transacao(tipo_transacao, valor, descricao)
+      conta.transacoes.push(transacao)
+      return transacao.transacao_id
+    }
+  }
+}
+
 
 app.get("/status", (request, response) => {
   response.send({ "status": "ok" })
@@ -38,16 +38,15 @@ app.get("/status", (request, response) => {
 app.get('/conta/:numero_conta', (request, response) => {
   const { numero_conta } = request.params;
 
-  const contaEncontrada = contas.find(
-    (conta) => conta.numero_conta === numero_conta
-  )
+  const contaEncontrada = buscaContaPorNumero(numero_conta);
 
   if (contaEncontrada) {
     // retornar os dados da conta
     response.send({
-      "nome": contaEncontrada.nome,
-      "numero_conta": contaEncontrada.numero_conta,
-      "saldo": contaEncontrada.saldo
+      nome_pessoa: contaEncontrada.nome_pessoa,
+      numero_conta: contaEncontrada.numero_conta,
+      transacoes: contaEncontrada.transacoes,
+      saldo: contaEncontrada.saldo
     })
   } else {
     response.status(404).send({
@@ -61,9 +60,7 @@ app.get('/conta/:numero_conta', (request, response) => {
 app.get('/conta/:numero_conta/saldo', (request, response) => {
   const { numero_conta } = request.params;
 
-  const contaEncontrada = contas.find(
-    (conta) => conta.numero_conta === numero_conta
-  )
+  const contaEncontrada = buscaContaPorNumero(numero_conta);
 
   if (contaEncontrada) {
     // retornar os dados da conta
@@ -81,13 +78,11 @@ app.get('/conta/:numero_conta/saldo', (request, response) => {
 app.post('/conta/:numero_conta/deposito', (request, response) => {
   const { numero_conta } = request.params;
 
-  const { valor, tipo } = request.body;
+  const { valor, tipo_deposito } = request.body;
+
+  const contaEncontrada = buscaContaPorNumero(numero_conta);
 
   // validar se a conta existe
-  const contaEncontrada = contas.find(
-    (conta) => conta.numero_conta === numero_conta
-  )
-
   if (!contaEncontrada) {
     response.send({
       "error": "Conta não encontrada"
@@ -102,13 +97,28 @@ app.post('/conta/:numero_conta/deposito', (request, response) => {
   }
 
   // validar qual o tipo de depósito (DINHEIRO ou CHEQUE)
-  if (!tipo || typeof tipo !== String) {
+  const tipos_validos = ['DINHEIRO', 'CHEQUE']
+  if (!tipo_deposito || !tipos_validos.includes(tipo_deposito.toUpperCase())) {
     response.send({
-      "error": "Tipo inválido"
+      "error": "Tipo Deposito inválido"
     })
-  } else if (tipo.toUpperCase() === 'DINHEIRO') {
-    // TODO - Validar se é inteiro
+  } else if (tipo_deposito.toUpperCase() === 'DINHEIRO') {
+    if (!Number.isInteger(valor)) {
+      response.status(400).send({ "error": "Depósito em dinheiro apenas com valores inteiros." })
+    }
+    const transacao_id = insereTransacao(numero_conta, "ENTRADA", valor, `Depósito em ${tipo_deposito}`)
+    response.send({
+      message: "Transação efetuada com sucesso.",
+      transacao_id
+    })
+  } else if (tipo_deposito.toUpperCase() === 'CHEQUE') {
+    const transacao_id = insereTransacao(numero_conta, "ENTRADA", valor, `Depósito em ${tipo_deposito}`)
+    response.send({
+      message: "Transação efetuada com sucesso.",
+      transacao_id
+    })
   }
+
 })
 
 
