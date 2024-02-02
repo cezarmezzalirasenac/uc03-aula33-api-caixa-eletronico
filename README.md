@@ -14,16 +14,16 @@ Não está contemplado o acesso via cartão e senha e nem o salvamento de inform
 
 ## Regras de negócio 
 
-### GET /conta/:numero_conta
+### GET /contas/:numero_conta
 A rota de boas vindas irá mostrar o nome do cliente, número da conta e saldo atual, baseado no número da conta passado por parâmetro.
 
-### GET /conta/:numero_conta/extrato
+### GET /contas/:numero_conta/extrato
 Na rota de extrato, irá retornar uma lista de todas as transações e o saldo atual, baseado no número da conta passado por parâmetro.
 
-### GET /conta/:numero_conta/saldo
+### GET /contas/:numero_conta/saldo
 Na rota de saldo, irá mostrar o saldo atual calculado a partir das transações, baseado no número da conta passado por parâmetro.
 
-### POST /conta/:numero_conta/deposito
+### POST /contas/:numero_conta/deposito
 
 Na rota de deposito, vai receber a conta por parâmetro e o valor pelo corpo da requisição, validando que o valor precisa ser um número inteiro se for dinheiro e qualquer valor se for cheque. Não deve permitir depósito de valores negativos.
 
@@ -45,7 +45,7 @@ Exemplo do corpo da requisição quando for um deposito em cheque:
 }
 ```
 
-### POST /conta/:numero_conta/saque
+### POST /contas/:numero_conta/saque
 
 Na rota de saque, vai receber a conta por parâmetro e o valor pelo corpo da requisição, validando que o valor do saque precisa ser um número inteiro e precisa ser maior que zero.
 

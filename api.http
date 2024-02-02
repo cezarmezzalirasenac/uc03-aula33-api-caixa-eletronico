@@ -3,15 +3,15 @@
 GET http://localhost:5000/status
 
 ### Boas vindas
-GET http://localhost:5000/conta/1313-0
+GET http://localhost:5000/contas/1313-0
 
 
 ### Saldo
-GET http://localhost:5000/conta/1313-0/saldo
+GET http://localhost:5000/contas/1313-0/saldo
 
 
 ### Depósito DINHEIRO
-POST http://localhost:5000/conta/1313-0/deposito
+POST http://localhost:5000/contas/1313-0/deposito
 Content-Type: application/json
 
 {
