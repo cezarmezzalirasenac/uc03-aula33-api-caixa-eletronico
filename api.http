@@ -1,13 +1,15 @@
 ### status
-
 GET http://localhost:5000/status
+
 
 ### Boas vindas
 GET http://localhost:5000/contas/1313-0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoiMmY3YWYxNDItMDFiZC00NzhkLWIxOWMtN2QzNGIxNzZiMGNkIiwiZW1haWwiOiJmdWxhbm9AZW1haWwuY29tIiwiaWF0IjoxNzA2OTE5NTg1LCJleHAiOjE3MDY5MjMxODV9.8I_RCN2Emi1rx0CrnDpaia_jIM6AxN2XfAMZPELu0Tc
 
 
 ### Saldo
 GET http://localhost:5000/contas/1313-0/saldo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvX2lkIjoiMmY3YWYxNDItMDFiZC00NzhkLWIxOWMtN2QzNGIxNzZiMGNkIiwiZW1haWwiOiJmdWxhbm9AZW1haWwuY29tIiwiaWF0IjoxNzA2OTE5NTg1LCJleHAiOjE3MDY5MjMxODV9.8I_RCN2Emi1rx0CrnDpaia_jIM6AxN2XfAMZPELu0Tc
 
 
 ### Depósito DINHEIRO
@@ -24,6 +26,6 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-  "email": "fulano@email.com1",
-  "senha": "12346"
+  "email": "fulano@email.com",
+  "senha": "123456"
 }

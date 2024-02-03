@@ -29,6 +29,8 @@ function insereTransacao(numero_conta, tipo_transacao, valor, descricao) {
 router.get('/:numero_conta', (request, response) => {
   const { numero_conta } = request.params;
 
+  console.log(`Usuário logado: ${request.usuario.usuario_id}`)
+
   const contaEncontrada = buscaContaPorNumero(numero_conta);
 
   if (contaEncontrada) {
