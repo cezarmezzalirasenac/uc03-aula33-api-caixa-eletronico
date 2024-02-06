@@ -5,7 +5,7 @@ import loginRotas from './rotas/login.rotas.js'
 import { authorizeMiddleware } from './middlewares/auth.middleware.js'
 
 const app = express()
-const port = process.env.PORT
+const port = process.env.PORT || 5000
 
 app.use(express.json())
 
