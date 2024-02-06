@@ -4,8 +4,13 @@ Aplicação criada durante as aulas do curso de Programador Web do Senac Pato Br
 
 Este programa simula as seguintes operações de um caixa eletrônico:
 
+- [ ] Rota de cadastro de pessoa
+- [ ] Rota de atualizacao de cadastro de pessoa
+- [ ] Rota de obter os dados da pessoa
+- [ ] Rota de exclusão de pessoa
 - [x] Rota de boas vindas
-- [ ] Rota de Extrato
+- [ ] Rota de criação de conta
+- [ ] Rota de Extrato de transações com saldo
 - [x] Rota de Saldo
 - [ ] Rota de Depósito
 - [ ] Rota de Saque
@@ -13,6 +18,20 @@ Este programa simula as seguintes operações de um caixa eletrônico:
 Não está contemplado o acesso via cartão e senha e nem o salvamento de informações em um banco dados.
 
 ## Regras de negócio 
+
+### POST /pessoas/cadastro
+Rota de cadastro de pessoa, onde deverá ser informado o nome completo, cpf, nome de usuario (nickname) e senha.
+
+### PATCH /pessoas/:usuario_id/atualizacao
+Rota de atualizacao de cadastro de pessoa deve validar se o usuário da sessão é a própria pessoa e só vai atualizar nome completo, cpf, nome de usuario e senha. Caso seja um bancario, pode atualizar apenas o nome completo, cpf e privilegio para cliente apenas.
+
+### GET /pessoas/:usuario_id
+Rota de obter os dados da pessoa pelo seu id. Quando for um cliente, retorna os dados dele mesmo, não permitindo consultar outros usuarios.
+Senão, se for um bancario, pode consultar todas pessoas.
+
+### DELETE /pessoas/:usuario_id
+Rota de exclusão de pessoa, somente um bancario pode efetuar a exclusão. A exclusão será lógica, ou seja, a pessoa ficará inativa no banco de dados.
+
 
 ### GET /contas/:numero_conta
 A rota de boas vindas irá mostrar o nome do cliente, número da conta e saldo atual, baseado no número da conta passado por parâmetro.

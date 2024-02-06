@@ -11,7 +11,8 @@ CREATE TABLE "banco"."pessoas" (
   "cpf" text NOT NULL,
   "usuario" text NOT NULL,
   "senha" text NOT NULL,
-  "privilegio" text NOT NULL DEFAULT 'comum'
+  "privilegio" text NOT NULL DEFAULT 'sem-acesso',
+  "data_exclusao" timestamp
 );
 
 CREATE TABLE "banco"."contas" (
