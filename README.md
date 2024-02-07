@@ -19,17 +19,17 @@ Não está contemplado o acesso via cartão e senha e nem o salvamento de inform
 
 ## Regras de negócio 
 
-### POST /pessoas/cadastro
+### POST /pessoas/cadastrar
 Rota de cadastro de pessoa, onde deverá ser informado o nome completo, cpf, nome de usuario (nickname) e senha.
 
-### PATCH /pessoas/:usuario_id/atualizacao
+### PATCH /pessoas/:pessoa_id/atualizar
 Rota de atualizacao de cadastro de pessoa deve validar se o usuário da sessão é a própria pessoa e só vai atualizar nome completo, cpf, nome de usuario e senha. Caso seja um bancario, pode atualizar apenas o nome completo, cpf e privilegio para cliente apenas.
 
-### GET /pessoas/:usuario_id
+### GET /pessoas/:pessoa_id
 Rota de obter os dados da pessoa pelo seu id. Quando for um cliente, retorna os dados dele mesmo, não permitindo consultar outros usuarios.
 Senão, se for um bancario, pode consultar todas pessoas.
 
-### DELETE /pessoas/:usuario_id
+### DELETE /pessoas/:pessoa_id
 Rota de exclusão de pessoa, somente um bancario pode efetuar a exclusão. A exclusão será lógica, ou seja, a pessoa ficará inativa no banco de dados.
 
 
