@@ -4,7 +4,7 @@ Aplicação criada durante as aulas do curso de Programador Web do Senac Pato Br
 
 Este programa simula as seguintes operações de um caixa eletrônico:
 
-- [ ] Rota de cadastro de pessoa
+- [x] Rota de cadastro de pessoa
 - [ ] Rota de atualizacao de cadastro de pessoa
 - [ ] Rota de obter os dados da pessoa
 - [ ] Rota de exclusão de pessoa

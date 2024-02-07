@@ -12,7 +12,9 @@ CREATE TABLE "banco"."pessoas" (
   "usuario" text NOT NULL,
   "senha" text NOT NULL,
   "privilegio" text NOT NULL DEFAULT 'sem-acesso',
-  "data_exclusao" timestamp
+  created_at timestamp NOT NULL,
+  updated_at timestamp NOT NULL,
+  "deleted_at" timestamp
 );
 
 CREATE TABLE "banco"."contas" (
@@ -21,7 +23,9 @@ CREATE TABLE "banco"."contas" (
   "agencia" text NOT NULL,
   "numero_conta" text NOT NULL,
   "tipo_conta" char NOT NULL,
-  "saldo" double precision NOT NULL
+  "saldo" double precision NOT NULL,
+  "updated_at" timestamp NOT NULL,
+  "created_at" timestamp NOT NULL
 );
 
 CREATE TABLE "banco"."transacoes" (
@@ -29,7 +33,7 @@ CREATE TABLE "banco"."transacoes" (
   "conta_id" uuid NOT NULL,
   "tipo" char NOT NULL,
   "valor" double precision NOT NULL,
-  "data_hora_transacao" timestamp
+  "created_at" timestamp NOT NULL
 );
 
 ALTER TABLE "banco"."contas" ADD FOREIGN KEY ("pessoa_id") REFERENCES "banco"."pessoas" ("pessoa_id");

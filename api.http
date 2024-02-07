@@ -29,3 +29,15 @@ Content-Type: application/json
   "email": "fulano@email.com",
   "senha": "123456"
 }
+
+
+### Cadastro pessoa
+POST http://localhost:5000/pessoas/cadastro
+Content-Type: application/json 
+
+{
+  "nome_completo": "Cezar Augusto Mezzalira",
+  "cpf": "123432434",
+  "usuario": "cezarmezzalira",
+  "senha": "123456"
+}

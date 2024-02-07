@@ -2,8 +2,8 @@ import express from 'express'
 import contaRotas from './rotas/conta.rotas.js'
 import mainRotas from './rotas/main.rotas.js'
 import loginRotas from './rotas/login.rotas.js'
+import pessoaRotas from './rotas/pessoa.rotas.js'
 import { authorizeMiddleware } from './middlewares/auth.middleware.js'
-import database from './database/index.js'
 
 const app = express()
 const port = process.env.PORT || 5000
@@ -13,16 +13,11 @@ app.use(express.json())
 app.get("/status", mainRotas.status)
 
 // Importa as rotas de conta
-app.use('/contas', authorizeMiddleware, contaRotas.router)
 app.use(loginRotas.router)
+app.use('/contas', authorizeMiddleware, contaRotas.router)
+app.use('/pessoas', pessoaRotas.router)
 
-const db = database.getDB()
 
-const contas = await db.query(
-  'SELECT * FROM banco.CONTAS where banco.contas.numero_conta = $1', 
-  ['24630-2'])
-
-console.log('contas', contas)
 
 
 app.listen(port, () => {
