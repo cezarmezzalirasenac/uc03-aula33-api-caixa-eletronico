@@ -17,9 +17,6 @@ app.use(loginRotas.router)
 app.use('/contas', authorizeMiddleware, contaRotas.router)
 app.use('/pessoas', pessoaRotas.router)
 
-
-
-
 app.listen(port, () => {
   console.log(`API rodando na porta ${port}`)
 })

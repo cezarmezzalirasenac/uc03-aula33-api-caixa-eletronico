@@ -19,7 +19,7 @@ function authorizeMiddleware(request, response, next) {
     response.status(403).send({ message: 'Token inválido' })
   }
 
-  request.usuario = tokenValidado.payload
+  request.session = tokenValidado.payload
 
   // seguir com a requisição
   next()

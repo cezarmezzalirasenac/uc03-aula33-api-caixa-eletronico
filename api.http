@@ -42,11 +42,23 @@ Content-Type: application/json
 
 ### Cadastro pessoa
 POST http://localhost:5000/pessoas/cadastrar
-Content-Type: application/json 
+Content-Type: application/json  
 
 {
   "nome_completo": "Cezar Augusto Mezzalira",
-  "cpf": "123432434",
+  "cpf": "12100393",
+  "usuario": "cezarmezzalira",
+  "senha": "123456"
+}
+
+### Atualizar dados pessoa
+PATCH http://localhost:5000/pessoas/2c4e1c56-dccd-4cee-ab16-3ab93699445a/atualizar
+Content-Type: application/json  
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXNzb2FfaWQiOiIyYzRlMWM1Ni1kY2NkLTRjZWUtYWIxNi0zYWI5MzY5OTQ0NWEiLCJwcml2aWxlZ2lvIjoic2VtLWFjZXNzbyIsImlhdCI6MTcwNzM1Mzg3MywiZXhwIjoxNzA3MzU3NDczfQ.rcmfjGM4Q-E9nUuZ-deLwJ8sEDuGFj19tqxGPIkVt9U
+
+{
+  "nome_completo": "Cezar Mezzalira",
+  "cpf": "1234567890",
   "usuario": "cezarmezzalira",
   "senha": "123456"
 }
