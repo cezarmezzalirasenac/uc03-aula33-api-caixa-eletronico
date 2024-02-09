@@ -16,13 +16,12 @@ function authorizeMiddleware(request, response, next) {
   // validar se o token está válido, caso não esteja,
   //  retornar erro 403 - Unauthorized
   if (!tokenValidado || tokenValidado.error) {
-    response.status(403).send({ message: 'Token inválido' })
+    response.status(403).json({ message: 'Token inválido' })
+  } else {
+    request.session = tokenValidado.payload
+    // seguir com a requisição
+    next()
   }
-
-  request.session = tokenValidado.payload
-
-  // seguir com a requisição
-  next()
 }
 
 export { authorizeMiddleware }

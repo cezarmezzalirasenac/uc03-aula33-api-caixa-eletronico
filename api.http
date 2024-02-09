@@ -21,16 +21,6 @@ Content-Type: application/json
   "tipo_deposito": "DINHEIRO"
 }
 
-### Login
-POST http://localhost:5000/login
-Content-Type: application/json 
-
-{
-  "email": "fulano@email.com",
-  "senha": "123456"
-}
-
-
 ### Login pessoa
 POST http://localhost:5000/pessoas/login
 Content-Type: application/json 
@@ -45,20 +35,20 @@ POST http://localhost:5000/pessoas/cadastrar
 Content-Type: application/json  
 
 {
-  "nome_completo": "Cezar Augusto Mezzalira",
-  "cpf": "12100393",
-  "usuario": "cezarmezzalira",
+  "nome_completo": "Adivogado Paloma",
+  "cpf": "9239012",
+  "usuario": "palomaaaadv",
   "senha": "123456"
 }
 
 ### Atualizar dados pessoa
 PATCH http://localhost:5000/pessoas/2c4e1c56-dccd-4cee-ab16-3ab93699445a/atualizar
 Content-Type: application/json  
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXNzb2FfaWQiOiIyYzRlMWM1Ni1kY2NkLTRjZWUtYWIxNi0zYWI5MzY5OTQ0NWEiLCJwcml2aWxlZ2lvIjoic2VtLWFjZXNzbyIsImlhdCI6MTcwNzM1Mzg3MywiZXhwIjoxNzA3MzU3NDczfQ.rcmfjGM4Q-E9nUuZ-deLwJ8sEDuGFj19tqxGPIkVt9U
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXNzb2FfaWQiOiIyYzRlMWM1Ni1kY2NkLTRjZWUtYWIxNi0zYWI5MzY5OTQ0NWEiLCJwcml2aWxlZ2lvIjoic2VtLWFjZXNzbyIsImlhdCI6MTcwNzQzOTQxOCwiZXhwIjoxNzA3NDQzMDE4fQ.jqvX5LFR9Va21QeS_MPw4X6H8fsfOpnThblCZDBGtP4
 
 {
-  "nome_completo": "Cezar Mezzalira",
+  "nome_completo": "Cezar Augusto Mezzalira",
   "cpf": "1234567890",
-  "usuario": "cezarmezzalira",
+  "usuario": "cmezzalira",
   "senha": "123456"
 }
